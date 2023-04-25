@@ -1,20 +1,15 @@
+from math import sqrt
+
 from matplotlib import pyplot as plt
 from gnssHelper.FGOHelper import FGOHelper
+from gnssHelper.NewFGOHelper import NewFGOHelper
 from gnssHelper.RtklibHelper import RtklibHelper
 
 if __name__ == '__main__':
-    fgo_icra = FGOHelper("./data/origin_2/orgin2_FGO_100.csv")
-    rtklib = RtklibHelper(path="./data/origin_2/origin2_rtklibResult.pos",
+    fgo = FGOHelper("./data/2-23-16-20-zdt-60min/0223_FGO_nopsr_100.csv")
+    rtklib = RtklibHelper("./data/2-23-16-20-zdt-60min/rtklibResult.pos",
                           exclude=25,
-                          from_fgo=True
-                          )
-    fgo_icra.lat_ref = 22.299915404
-    fgo_icra.lon_ref = 114.177707462
-    rtklib.lat_ref = 22.299915404
-    rtklib.lon_ref = 114.177707462
-
-    fgo_icra.plt_xy(color='orange', scatter=True)
-    print(fgo_icra.compute_xy_err())
-    rtklib.plt_xy(color='green', scatter=True)
-    print(rtklib.compute_xy_err())
+                          from_fgo=True)
+    fgo.plt_z(color='orange')
+    rtklib.plt_z(color='green')
     plt.show()

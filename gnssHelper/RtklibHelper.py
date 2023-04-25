@@ -14,7 +14,7 @@ class RtklibHelper(BaseGnssHelper):
             else:
                 rtklib_data_arr.append(re.split('\s+', str(data)))
 
-        self.time = getRowdata(rtklib_data_arr, 1)
+        self.time = FloatTrans(getRowdata(rtklib_data_arr, 1))
         self.lat = FloatTrans(getRowdata(rtklib_data_arr, 2))
         self.lon = FloatTrans(getRowdata(rtklib_data_arr, 3))
         self.height = FloatTrans(getRowdata(rtklib_data_arr, 4))
